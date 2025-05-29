@@ -1,8 +1,8 @@
 {
   "name": "miltov-language",
-  "displayName": "Miltov Language",
-  "description": "Syntax highlighting for Miltov language",
-  "version": "0.0.1",
+  "displayName": "code.miltov",
+  "description": "best rblx, and web backend coding language",
+  "version": "v1.1.0.0",
   "engines": {
     "vscode": "^1.50.0"
   },
