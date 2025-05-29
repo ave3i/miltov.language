@@ -1,0 +1,18 @@
+milt set name = "MiltovBot"
+milt set language = "Miltov"
+milt set count = 0
+
+message "🤖 Hello from Miltov!"
+
+repeat 5 times:
+    message "Loop number: " + count
+    milt set count = count + 1
+end
+
+if count == 5:
+    message "✅ Reached the loop limit."
+else:
+    message "❌ Something went wrong."
+end
+
+milt done
