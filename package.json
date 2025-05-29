@@ -2,7 +2,7 @@
   "name": "miltov-language",
   "displayName": "code.miltov",
   "description": "best rblx, and web backend coding language",
-  "version": "v1.1.0.0",
+  "version": "0.0.1",
   "engines": {
     "vscode": "^1.50.0"
   },
