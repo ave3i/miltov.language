@@ -25,9 +25,9 @@ with miltov, you can:
 
 ## ૮꒰◞ ˕ ◟ ྀི꒱ა features
 
-- **Roblox API Integration:** Manage Roblox user data, groups, badges, friends, and more.
-- **Web Backend Support:** Create and run web servers using Express.
-- **Simple Syntax:** Inspired by Python with clear, readable commands starting with `milt`.
+- **Roblox API Integration:** manage Roblox user data, groups, badges, friends, and more.
+- **Web Backend Support:** create and run web servers using express.
+- **Simple Syntax:** use `milt` to create a variable!
 - **Modular Design:** Easily extend with new modules and commands.
-- **Cross-platform:** Runs on any system with Node.js installed.
-- **Secure:** Uses Roblox `.ROBLOSECURITY` cookies for authentication and handles CSRF tokens automatically.
+- **Cross-platform:** runs on any system with Node.js installed.
+- **Secure:** uses Roblox `.ROBLOSECURITY` cookies for authentication and handles CSRF tokens automatically.
