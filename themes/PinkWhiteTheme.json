@@ -1,0 +1,54 @@
+{
+  "name": "PinkWhiteTheme",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#1e1e1e",
+    "editor.foreground": "#ffffff"
+  },
+  "tokenColors": [
+    {
+      "scope": "keyword.control.miltov",
+      "settings": {
+        "foreground": "#ff6ec4",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": "variable.other.miltov",
+      "settings": {
+        "foreground": "#ffa3d7"
+      }
+    },
+    {
+      "scope": "string.quoted.double.miltov",
+      "settings": {
+        "foreground": "#ff8ac4"
+      }
+    },
+    {
+      "scope": "constant.numeric.miltov",
+      "settings": {
+        "foreground": "#ff63c3"
+      }
+    },
+    {
+      "scope": "comment.line.star-dash.miltov",
+      "settings": {
+        "foreground": "#ff94d6",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": "keyword.operator.miltov",
+      "settings": {
+        "foreground": "#ff4ba3"
+      }
+    },
+    {
+      "scope": "punctuation.separator.miltov",
+      "settings": {
+        "foreground": "#ffffff"
+      }
+    }
+  ]
+}
