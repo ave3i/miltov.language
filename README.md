@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/ave3i/Miltov/blob/main/logo.png?raw=true" alt="Miltov logo" width="200" />
+  <img src="https://github.com/ave3i/miltov.language/blob/main/icons/logo.png?raw=true" alt="Miltov logo" width="200" />
 </p>
 
 <h1 align="center">Miltov Language</h1>
