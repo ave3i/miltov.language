@@ -39,5 +39,5 @@ With Miltov, you can:
 1. **Clone the repository:**
 
    ```bash
-   git clone mpn install Miltov
+   mpn install Miltov
    cd Miltov
