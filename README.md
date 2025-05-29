@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/ave3i/miltov.language/blob/main/icons/logo.png?raw=true" alt="Miltov logo" width="200" />
+  <img src="https://github.com/ave3i/miltov.language/blob/main/icons/logo.png?raw=true" alt="miltov logo" width="200" />
 </p>
 
 <h1 align="center">Miltov Language</h1>
@@ -10,7 +10,7 @@
 
 ---
 
-## 🚀 Introduction
+## Ი︵𐑼 introduction
 
 Miltov is a modern, easy-to-use programming language tailored for Roblox developers and web programmers alike. It features a Python-inspired syntax, making it intuitive for beginners and powerful enough for advanced users.
 
@@ -23,7 +23,7 @@ With Miltov, you can:
 
 ---
 
-## 🌟 Features
+## ૮꒰◞ ˕ ◟ ྀི꒱ა features
 
 - **Roblox API Integration:** Manage Roblox user data, groups, badges, friends, and more.
 - **Web Backend Support:** Create and run web servers using Express.
@@ -31,13 +31,3 @@ With Miltov, you can:
 - **Modular Design:** Easily extend with new modules and commands.
 - **Cross-platform:** Runs on any system with Node.js installed.
 - **Secure:** Uses Roblox `.ROBLOSECURITY` cookies for authentication and handles CSRF tokens automatically.
-
----
-
-## 🛠 Installation
-
-1. **Clone the repository:**
-
-   ```bash
-   npm install Miltov
-   cd Miltov
