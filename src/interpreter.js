@@ -2,11 +2,67 @@ require('dotenv').config();
 const fs = require('fs');
 const express = require('express');
 const axios = require('axios');
+const { parseMiltov } = require('./parser'); // Ensure parser.js exports parseMiltov
+
+// === EVALUATOR ===
+
+function evaluate(node) {
+  switch (node.type) {
+    case 'Program':
+      node.body.forEach(statement => evaluate(statement));
+      break;
+    case 'PrintStatement':
+      return evaluatePrintStatement(node);
+    case 'Literal':
+      return node.value;
+    case 'BinaryExpression':
+      return evaluateBinaryExpression(node);
+    case 'UnaryExpression':
+      return evaluateUnaryExpression(node);
+    case 'Identifier':
+      return node.name; // Update if implementing variable resolution
+    case 'ExpressionStatement':
+      return evaluate(node.expression);
+    default:
+      throw new Error(`Unknown node type: ${node.type}`);
+  }
+}
 
 function evaluatePrintStatement(node) {
   const evaluatedArgs = node.arguments.map(arg => evaluate(arg));
   console.log(...evaluatedArgs);
 }
+
+function evaluateBinaryExpression(node) {
+  const left = evaluate(node.left);
+  const right = evaluate(node.right);
+
+  switch (node.operator) {
+    case 'PLUS': return left + right;
+    case 'MINUS': return left - right;
+    case 'MULTIPLY': return left * right;
+    case 'DIVIDE': return left / right;
+    case 'EQUAL_EQUAL': return left === right;
+    case 'NOT_EQUAL': return left !== right;
+    case 'GREATER': return left > right;
+    case 'LESS': return left < right;
+    case 'GTE': return left >= right;
+    case 'LTE': return left <= right;
+    default:
+      throw new Error(`Unknown binary operator: ${node.operator}`);
+  }
+}
+
+function evaluateUnaryExpression(node) {
+  const arg = evaluate(node.argument);
+  switch (node.operator) {
+    case '-': return -arg;
+    default:
+      throw new Error(`Unknown unary operator: ${node.operator}`);
+  }
+}
+
+// === ROBLOX BOT ===
 
 class RobloxBot {
   constructor(cookie) {
@@ -130,6 +186,8 @@ class RobloxBot {
   }
 }
 
+// === WEB BACKEND ===
+
 class WebBackend {
   constructor() {
     this.app = express();
@@ -152,6 +210,8 @@ class WebBackend {
   }
 }
 
+// === MILTOV INTERPRETER ===
+
 class MiltovInterpreter {
   constructor(miltovFile, robloxCookie) {
     this.miltovFile = miltovFile;
@@ -161,33 +221,8 @@ class MiltovInterpreter {
 
   async run() {
     const source = fs.readFileSync(this.miltovFile, 'utf-8');
-    const lines = source.split('\n').map(l => l.trim()).filter(l => l.length && !l.startsWith('*-'));
-
-    for (const line of lines) {
-      // Syntax: milt <module> <command> [args...]
-      const parts = line.split(' ');
-      if (parts[0] !== 'milt') {
-        console.log(`Invalid line (must start with milt): ${line}`);
-        continue;
-      }
-      const module = parts[1];
-      const command = parts[2];
-      const args = parts.slice(3);
-
-      try {
-        if (module === 'roblox') {
-          const result = await this.handleRoblox(command, args);
-          if (result !== undefined) console.log('Result:', result);
-        } else if (module === 'web') {
-          const result = await this.handleWeb(command, args);
-          if (result !== undefined) console.log('Result:', result);
-        } else {
-          console.log(`Unknown module: ${module}`);
-        }
-      } catch (e) {
-        console.error(`Error running command: ${line}`, e.message);
-      }
-    }
+    const program = parseMiltov(source);
+    evaluate(program);
   }
 
   async handleRoblox(command, args) {
@@ -246,6 +281,8 @@ class MiltovInterpreter {
     }
   }
 }
+
+// === CLI ENTRY POINT ===
 
 (async () => {
   if (process.argv.length < 4) {
