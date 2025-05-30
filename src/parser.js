@@ -78,21 +78,6 @@ function parseMiltov(source) {
     return { type: 'Program', body };
   }
 
-
-function parsePrintStatement() {
-  consume('PRINT');
-  consume('LPAREN');
-  const args = [];
-  while (peek().type !== 'RPAREN') {
-    args.push(parseExpression());
-    if (peek().type === 'COMMA') {
-      consume('COMMA');
-    }
-  }
-  consume('RPAREN');
-  return { type: 'PrintStatement', arguments: args };
-}
-  
   function parseStatement() {
     const token = peek();
 
@@ -103,8 +88,23 @@ function parsePrintStatement() {
     if (token.type === 'MESSAGE') return parseMessageStatement();
     if (token.type === 'SHOUT') return parseShoutStatement();
     if (token.type === 'RETURN') return parseReturnStatement();
+    if (token.type === 'PRINT') return parsePrintStatement();
 
     return parseExpressionStatement();
+  }
+
+  function parsePrintStatement() {
+    consume('PRINT');
+    consume('LPAREN');
+    const args = [];
+    while (peek().type !== 'RPAREN') {
+      args.push(parseExpression());
+      if (peek().type === 'COMMA') {
+        consume('COMMA');
+      }
+    }
+    consume('RPAREN');
+    return { type: 'PrintStatement', arguments: args };
   }
 
   function parseVariableDeclaration() {
@@ -281,14 +281,12 @@ function parsePrintStatement() {
     }
     if (token.type === 'STRING') {
       consume('STRING');
-      // Remove quotes
       const strVal = token.value.slice(1, -1);
       return { type: 'Literal', value: strVal };
     }
     if (token.type === 'IDENTIFIER') {
       consume('IDENTIFIER');
       if (peek() && peek().type === 'LPAREN') {
-        // function call
         consume('LPAREN');
         const args = [];
         while (peek().type !== 'RPAREN') {
