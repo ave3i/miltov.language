@@ -3,6 +3,11 @@ const fs = require('fs');
 const express = require('express');
 const axios = require('axios');
 
+function evaluatePrintStatement(node) {
+  const evaluatedArgs = node.arguments.map(arg => evaluate(arg));
+  console.log(...evaluatedArgs);
+}
+
 class RobloxBot {
   constructor(cookie) {
     this.cookie = cookie;
