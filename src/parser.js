@@ -1,5 +1,3 @@
-// parser.js
-
 function parseMiltov(source) {
   const tokens = tokenize(source);
   let current = 0;
@@ -8,6 +6,7 @@ function parseMiltov(source) {
     const tokenSpecs = [
       [/^\s+/, null],
       [/^milt\b/, 'MILTVAR'],
+      [/\bprint\b/, 'PRINT'],
       [/^func\b/, 'FUNC'],
       [/^return\b/, 'RETURN'],
       [/^if\b/, 'IF'],
@@ -79,6 +78,21 @@ function parseMiltov(source) {
     return { type: 'Program', body };
   }
 
+
+function parsePrintStatement() {
+  consume('PRINT');
+  consume('LPAREN');
+  const args = [];
+  while (peek().type !== 'RPAREN') {
+    args.push(parseExpression());
+    if (peek().type === 'COMMA') {
+      consume('COMMA');
+    }
+  }
+  consume('RPAREN');
+  return { type: 'PrintStatement', arguments: args };
+}
+  
   function parseStatement() {
     const token = peek();
 
